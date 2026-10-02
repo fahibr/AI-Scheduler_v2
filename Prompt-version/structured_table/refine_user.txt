@@ -1,0 +1,11 @@
+Fill item_number, width_mm, height_mm, thickness_mm, fire_rating, door_material, frame_material, configuration, quantity_by_level, quantity, description, and remarks for these door types only: {marks}.
+Prefer structured-table cells and any normalised row JSON over guessing.
+item_number is the ITEM / Item No. / No. cell for that row (not the door mark); null if absent.
+For description, keep full row notes / specification cells; merge useful extra_fields text rather than discarding it.
+For remarks, copy REMARKS / NOTE / CATATAN cells; use null if blank.
+{schema_hint}
+
+Schedule text:
+```
+{page_text}
+```

@@ -1,0 +1,12 @@
+{
+  "version": "v1",
+  "created": "2026-09-18",
+  "description": "Door-schedule vision prompts: hinged doors + roller shutters, WxH without thickness, shutter-box ignore, m.s / fire-rated shutter notes.",
+  "files": [
+    "schema_hint.txt",
+    "vision_system.txt",
+    "vision_user.txt",
+    "refine_system.txt",
+    "refine_user.txt"
+  ]
+}

@@ -1,0 +1,40 @@
+Return ONLY valid JSON with this shape:
+{
+  "doors": [
+    {
+      "door_type": "FD1",
+      "width_mm": 1100,
+      "height_mm": 2400,
+      "thickness_mm": 50,
+      "fire_rating": "2 hour",
+      "door_material": "Ordinary plywood",
+      "frame_material": "Metal",
+      "configuration": "single leaf | double leaf | sliding | roller shutter | ...",
+      "location": "short location text if present",
+      "quantity": 17,
+      "description": "one-sentence summary without repeating every accessory"
+    }
+  ]
+}
+
+Rules:
+- door_type is the schedule mark (e.g. FD1, D2, SD1, RS1, FRS1). Skip title-block codes.
+- Prefer overall door / opening sizes from DESCRIPTION text patterned like:
+  "1100mm (W) x 2400mm (H) x 50mm thk"
+  OR (roller shutters / some notes without thickness):
+  "3000mm (W) x 2400mm (H)"
+- Do NOT use vision-panel sizes (often ~150mm x 500/800mm x 6mm) as the door size.
+- Roller shutters: dense horizontal hatching with a "Shutter Box" is a roller shutter, not noise.
+  - Use the opening size from the note (W x H); set thickness_mm to null if not stated.
+  - Do NOT use the shutter-box / header height (often ~300mm labelled on the drawing) as height_mm.
+  - configuration = "roller shutter".
+  - door_material: map "m.s" / "mild steel" / "steel" from the note (e.g. "Mild steel").
+  - frame_material: null unless a frame is explicitly stated (shutters often have no timber/metal frame).
+  - Fire-rated shutters (marks like FRS*, or text "2 hour fire rated roller shutter"): set fire_rating from that phrase.
+  - Non-fire shutters (e.g. RS1 with no fire wording): fire_rating = null.
+- width_mm / height_mm / thickness_mm must be numbers in millimetres (no units).
+- fire_rating is the door / shutter fire rating (e.g. "2 hour", "60", "120", "Smoke") — not vision-panel glass rating alone.
+- door_material is the leaf/core/surface or shutter curtain material (e.g. Ordinary plywood, Timber, Hollow metal, Mild steel).
+- frame_material is the frame material only (e.g. Metal, Aluminium) — not skirting or vision panel.
+- If a field is missing, use null.
+- Extract every distinct door type shown on the page.

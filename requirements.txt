@@ -1,0 +1,23 @@
+# AI Door Scheduler dependencies
+# Python 3.12+ recommended (tested with 3.13)
+#
+# Setup (Windows):
+#   python -m venv .venv
+#   .venv\Scripts\activate
+#   python -m pip install --upgrade pip
+#   pip install -r requirements.txt
+#
+# Configure Azure OpenAI in .env (ENDPOINT_URL, AZURE_OPENAI_API_KEY,
+# DEPLOYMENT_NAME, AZURE_OPENAI_API_VERSION).
+#
+# Run:
+#   streamlit run main.py
+
+streamlit>=1.57,<2
+openai>=1.40,<4
+python-dotenv>=1.0,<2
+pymupdf>=1.24,<2
+Pillow>=10.0,<13
+pandas>=2.2,<4
+openpyxl>=3.1,<4
+supabase>=2.7,<3

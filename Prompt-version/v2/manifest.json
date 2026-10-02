@@ -1,0 +1,12 @@
+{
+  "version": "v2",
+  "created": "2026-10-02",
+  "description": "Generic multi-template prompts: extract ALL marks, tabular WxH, Malay LxT, D1(900x2100), fire/shutter variants.",
+  "files": [
+    "schema_hint.txt",
+    "vision_system.txt",
+    "vision_user.txt",
+    "refine_system.txt",
+    "refine_user.txt"
+  ]
+}

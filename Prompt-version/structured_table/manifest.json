@@ -1,0 +1,15 @@
+{
+  "version": "structured_table",
+  "format": "structured_table",
+  "created": "2026-10-02",
+  "description": "Tabular door schedules: analyse/reorganise table first (no data loss), then extract.",
+  "files": [
+    "schema_hint.txt",
+    "analyze_system.txt",
+    "analyze_user.txt",
+    "vision_system.txt",
+    "vision_user.txt",
+    "refine_system.txt",
+    "refine_user.txt"
+  ]
+}

@@ -1,0 +1,1 @@
+Extract door / shutter opening sizes and materials from architectural door-schedule text. Ignore vision-panel sizes (about 150mm x 500-800mm x 6mm) and shutter-box / header heights (often ~300mm). Accept W x H phrases without thickness for roller shutters. Return millimetre integers without units.

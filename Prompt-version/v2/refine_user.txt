@@ -1,0 +1,11 @@
+Fill width_mm, height_mm, thickness_mm, fire_rating, door_material, frame_material, configuration, quantity_by_level, quantity, description, and remarks for these door types only: {marks}.
+Accept size phrases such as '1100mm (W) x 2400mm (H) x 50mm thk', '900 x 2100', '900 X 2100MM', 'D1 (900x2100)', '1800MM(L) X 2400MM(T)', '1HR fire-rated', '2 hour fire rated', 'roller shutter', 'timber flush', 'zincalume frame', 'pintu panel kayu'.
+For quantities prefer 'Level 1 (24), Level 2 (5)' → quantity_by_level "Level 1: 24; Level 2: 5" and 'TOTAL : 29' → quantity 29.
+For description, copy the schedule DESCRIPTION / SPECIFICATION / SPESIFIKASI text for that mark (full prose when available), not a one-word summary.
+For remarks, copy REMARKS / CATATAN / NOTE text for that mark (e.g. 'REFER TO KEY PLAN', 'BY OTHERS'); use null if blank.
+{schema_hint}
+
+Schedule text:
+```
+{page_text}
+```

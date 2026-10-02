@@ -1,0 +1,52 @@
+# Environment & secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# App runtime / generated outputs
+uploads/
+exports/
+_debug/
+_preview_*.png
+*.log
+
+# Local sample / working data
+*.pdf
+*.csv
+*.xlsx
+# Keep country AAOS templates in git
+!Door_Schedule_Template/
+!Door_Schedule_Template/**/
+!Door_Schedule_Template/**/*.xlsx
+
+# Legacy / local folders
+Airport/
+Office/
+* - backup.*

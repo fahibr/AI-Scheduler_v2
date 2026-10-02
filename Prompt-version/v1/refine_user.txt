@@ -1,0 +1,8 @@
+Fill width_mm, height_mm, thickness_mm, fire_rating, door_material, frame_material, configuration, and quantity for these door types only: {marks}.
+Use phrases like '1100mm (W) x 2400mm (H) x 50mm thk', '3000mm (W) x 2400mm (H)', '2 hour fire rated', 'roller shutter', 'manual m.s roller shutter', 'ordinary plywood surface', and 'metal frame'.
+{schema_hint}
+
+Schedule text:
+```
+{page_text}
+```

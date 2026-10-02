@@ -1,0 +1,12 @@
+This is page {page_number} of a **Structured Table Door Schedule** PDF (converted to an image).{text_block}
+
+{normalized_table_block}
+
+{schema_hint}
+
+Additional rules for structured tables:
+- Prefer values from the normalised table analysis when present.
+- If analysis and image disagree on a number, prefer the embedded PDF text / analysis source_row_text.
+- Always capture item_number from ITEM / Item No. / No. / # when that column exists (keep it separate from door_type).
+- Put any extra_fields / unmapped column text into description or remarks so nothing is lost (do not invent content).
+- Extract ALL rows as door types.

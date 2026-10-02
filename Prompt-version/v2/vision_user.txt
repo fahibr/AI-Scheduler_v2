@@ -1,0 +1,3 @@
+This is page {page_number} of a door schedule PDF (converted to an image).{text_block}
+
+{schema_hint}

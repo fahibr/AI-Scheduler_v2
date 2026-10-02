@@ -1,0 +1,13 @@
+{
+  "version": "elevation",
+  "format": "elevation",
+  "created": "2026-10-02",
+  "description": "Elevation / drawing-grid door schedules with New… specification blocks.",
+  "files": [
+    "schema_hint.txt",
+    "vision_system.txt",
+    "vision_user.txt",
+    "refine_system.txt",
+    "refine_user.txt"
+  ]
+}

@@ -1,0 +1,1 @@
+Extract door / shutter opening sizes and materials from architectural door-schedule text in any regional template (EN or Malay). Ignore vision-panel sizes and shutter-box / lintol heights. Accept WxH, mm(W)x mm(H)x thk, D1 (900x2100), and MM(L)x MM(T). Return millimetre integers without units. Fill only the listed marks; use null when absent.

@@ -1,0 +1,68 @@
+Return ONLY valid JSON with this shape:
+{
+  "doors": [
+    {
+      "door_type": "FD1",
+      "width_mm": 1100,
+      "height_mm": 2400,
+      "thickness_mm": 50,
+      "fire_rating": "2 hour",
+      "door_material": "Ordinary plywood",
+      "frame_material": "Metal",
+      "configuration": "single leaf | double leaf | sliding | bi-fold | roller shutter | ...",
+      "location": "short location text if present",
+      "quantity_by_level": "Level 1: 24; Level 2: 5",
+      "quantity": 29,
+      "description": "Full description / specification text for this door type from the schedule",
+      "remarks": "REFER TO KEY PLAN | BY OTHERS | other remark text if present"
+    }
+  ]
+}
+
+Rules — templates & marks:
+- Extract EVERY distinct door / shutter / glazed-door type on this page. Do not stop after one.
+- door_type is the schedule mark / symbol, e.g. FD1, D2, D10A, SD1, TD13, AD1, MD3, GD1, RS1, FRS1.
+- Skip title-block codes, drawing numbers (e.g. D6-3A-13A), glue types, axis labels W1/H1, and window-only marks unless clearly a door (WD*).
+- If a Malay jadual has sizes but no marks, invent TYPE1, TYPE2, … in reading order.
+
+Rules — sizes (accept any of these patterns):
+- "1100mm (W) x 2400mm (H) x 50mm thk"
+- "900 x 2100" / "900 X 2100MM" / "D1 (900x2100)"
+- "800 x 2100" frame-to-frame AND "860 x 2130" structure opening — prefer leaf/frame opening (smaller pair) as width/height unless only one pair exists
+- Malay: "1800MM(L) X 2400MM(T)" → width=1800, height=2400
+- Do NOT use vision-panel sizes (~150×500/800×6mm) or shutter-box / lintol heights (~150–300mm)
+
+Rules — quantities:
+- quantity_by_level: per-floor breakdown when shown, e.g. "Level 1 (24), Level 2 (5)" → "Level 1: 24; Level 2: 5"
+  Also accept Aras, GF/Ground Floor, Services Floor Plan (n).
+- quantity: overall TOTAL for that door type (e.g. "TOTAL : 29" → 29). If TOTAL missing, sum the level counts.
+- Do not confuse vision-panel / detail callout numbers with door quantities.
+
+Rules — description / specification:
+- description MUST capture the schedule DESCRIPTION / SPECIFICATION / SPESIFIKASI note for THAT door type only.
+- Prefer the full written spec when present, e.g. "New 1100mm (W) x 2400mm (H) x 50mm thk. single leaf 2 hour fire rated door…"
+- CRITICAL: width_mm / height_mm / thickness_mm MUST match the size inside that same description. Never attach another door's "New …" paragraph.
+- On CAD text dumps, the "New …" paragraph often appears AFTER the door mark and TOTAL line (mark → TOTAL → New…). Use the New block that belongs to this mark only.
+- Also accept leaf/frame notes such as "38MM THK HONEYCOMB CORE FLUSH DOOR… METAL (ZINCALUME) DOOR FRAME…"
+- Do not invent accessories that are not written. Do not replace the spec with only "single leaf fire door".
+- If no prose spec exists, put null (sizes/materials still go in their own fields).
+
+Rules — remarks / location:
+- remarks captures REMARKS / REMARK / CATATAN / NOTE fields tied to that door type.
+- Also include short schedule notes under the type such as "REFER TO KEY PLAN", "BY OTHERS", "SEE DETAIL".
+- location is room/area only (e.g. FAN ROOM, Wet Area). Do NOT put "REFER TO KEY PLAN" into location.
+- Do NOT copy drawing-wide title-block disclaimers (contractor shall check dimensions, copyright, etc.).
+- If blank, use null.
+
+Rules — products:
+- Marks include FD*, D*, LD* (louvre doors), SD*, TD*, AD*, MD*, GD*, RS*, FRS*.
+- Roller shutters: dense horizontal hatching + shutter box; thickness_mm null if unstated; configuration="roller shutter"; map m.s → Mild steel
+- Fire doors / FD* / "1HR" / "2 hour fire rated" → fire_rating; non-fire doors → fire_rating null
+- CRITICAL: fire_rating must come from THAT door's own spec (e.g. "2 hour fire rated door"). Do NOT copy a neighbour FD's rating onto D* / LD* / SD* / GD* when their New… note has no fire rating. Vision-panel glass "2 hour fire rated clear glass" alone is not the door fire_rating unless the leaf itself is fire rated.
+- door_material = leaf/core/curtain only (timber, ordinary plywood, honeycomb, metal, FRP, laminated clear tempered glass, aluminium louvres, kayu keras…)
+- CRITICAL: finishes are NOT door_material. Do NOT put "Veneer lipping", "paint finish", "laminate wood grain", or "HPL" alone in door_material — those belong in description. If the spec says "ordinary plywood surface and veneer lipping", door_material = "Ordinary plywood with veneer lipping". If only veneer/paint is stated and no core, door_material = null.
+- Do NOT copy "metal" from "metal frame" into door_material.
+- frame_material = frame only (Metal, Aluminium, zincalume, timber, bingkai besi…). Use short labels only — no parenthetical commentary.
+- Frameless glass doors may still list an aluminium frame in the note; if "alumn frame" / "aluminium frame" is written, frame_material = Aluminium.
+- configuration = single/double leaf, sliding, bi-fold, swing, louvres, roller shutter, etc.
+- width_mm / height_mm / thickness_mm are numbers in mm (no units). Missing → null.

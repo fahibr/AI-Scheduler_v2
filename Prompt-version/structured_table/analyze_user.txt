@@ -1,0 +1,42 @@
+This is page {page_number} of a **Structured Table Door Schedule** PDF (converted to an image).{text_block}
+
+Return ONLY valid JSON with this shape:
+{{
+  "needs_restructure": true,
+  "structure_notes": "Short explanation of the table layout and what you reorganised (or why no restructure was needed).",
+  "source_columns": ["Mark", "Width", "Height", "…every header / label seen…"],
+  "normalized_rows": [
+    {{
+      "door_type": "D1",
+      "item_number": "1",
+      "width_mm": 900,
+      "height_mm": 2100,
+      "thickness_mm": 45,
+      "fire_rating": null,
+      "door_material": "Timber",
+      "frame_material": "Metal",
+      "configuration": "single leaf",
+      "location": null,
+      "quantity_by_level": null,
+      "quantity": 2,
+      "description": "Full cell text / notes for this row if present",
+      "remarks": null,
+      "extra_fields": {{
+        "any_other_column_name": "preserved original value"
+      }},
+      "source_row_text": "Concatenated original row text so nothing is lost"
+    }}
+  ],
+  "unmapped_notes": ["Page-level notes / legends preserved here if not row-specific"],
+  "warnings": ["Optional data-quality warnings"]
+}}
+
+Rules:
+- Include EVERY door / shutter / glazed-door row visible on this page in normalized_rows.
+- Map known fields into the typed keys when clear; put everything else in extra_fields AND keep a rich source_row_text.
+- item_number = the schedule ITEM / Item No. / No. / # / Bil. cell for that row (as text). Do NOT put the door mark here. null if absent.
+- door_type = DOOR CODE / MARK / TYPE symbol (e.g. D10A), not the item number.
+- width_mm / height_mm / thickness_mm are integers in mm or null. Do not use vision-panel sizes.
+- If the table has no mark column, invent TYPE1, TYPE2, … in reading order.
+- needs_restructure = true when you had to untangle merged cells, multi-header rows, or scattered fields; false when the table was already clean.
+- Prefer embedded PDF text for exact numbers when it matches the image.
